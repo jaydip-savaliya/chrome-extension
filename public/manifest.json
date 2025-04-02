@@ -4,9 +4,13 @@
     "version": "1.0",
     "description": "Chrome extension built with React and Vite.",
     "permissions": [
+        "tabs",
         "storage",
         "activeTab",
         "scripting"
+    ],
+    "host_permissions":[
+        "https://chatgpt.com/"
     ],
     "background": {
         "service_worker": "background.js"
@@ -23,5 +27,12 @@
             "128": "vite.svg"
         },
         "default_popup": "index.html"
-    }
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["content.js"],
+            "run_at": "document_end"
+        }
+    ]
 }
